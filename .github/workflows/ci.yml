@@ -27,10 +27,7 @@ jobs:
     - name: Install tox
       run: pip install tox tox-gh-actions
     - name: Install h2spec
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        .github/workflows/install_h2spec.sh
+      run: mkdir bin && curl -sSL "https://github.com/summerwind/h2spec/releases/latest/download/h2spec_linux_amd64.tar.gz" | tar -xz --directory ./bin && ./bin/h2spec --version
     - name: Initialize tox envs
       run: |
         tox --parallel auto --notest
